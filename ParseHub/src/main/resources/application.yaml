@@ -1,0 +1,11 @@
+
+server:
+    port: 8080
+apiString: https://hatchways.io/api/assessment/blog/posts
+org:
+    apache:
+        tomcat:
+            util:
+                buf:
+                    UDecoder:
+                        ALLOW_ENCODED_SLASH: true
