@@ -3,8 +3,7 @@ const request = require('request');
 var getRawBody = require('raw-body')
 
 app.get("/proxy/**", (req, res, next) => {
-    const url = extractUrl(req.url);
-    res.send(url);
+    const url = extractUrl(req.url);    
 
     var options = {
         url: url,       
@@ -18,7 +17,8 @@ app.get("/proxy/**", (req, res, next) => {
         if (error) {
             console.log(error);            
         }
-        console.log(body);        
+        var x = JSON.parse(body)
+        res.json(x);       
     })
 })
 
@@ -40,8 +40,7 @@ app.use(function (req, res, next) {
 
 app.post("/proxy/**", (req, res, next) => {
     const url = extractUrl(req.url);
-    res.send(url);    
-
+    
     var options = {
         url: url,       
         headers: {
@@ -56,7 +55,8 @@ app.post("/proxy/**", (req, res, next) => {
         if (error) {
             console.log(error);            
         }
-        console.log(body);        
+        var x = JSON.parse(body)   
+        res.json(x);      
     })
 })
 

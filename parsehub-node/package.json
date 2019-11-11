@@ -12,5 +12,8 @@
     "express": "^4.17.1",
     "raw-body": "^2.4.1",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
