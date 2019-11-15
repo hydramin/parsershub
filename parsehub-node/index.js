@@ -1,6 +1,6 @@
 const app = require('express')();
 const request = require('request');
-var getRawBody = require('raw-body')
+const getRawBody = require('raw-body');
 
 app.get("/proxy/**", (req, res, next) => {
     const url = extractUrl(req.url);    
@@ -17,8 +17,11 @@ app.get("/proxy/**", (req, res, next) => {
         if (error) {
             console.log(error);            
         }
-        var x = JSON.parse(body)
-        res.json(x);       
+        var obj = { str: "Hello World", num: 42, smallarray: [ 1, 2, 3, "foo", {} ], smallobject: { foo: "bar", bar: 42 }, bigarray: [ 1, 2, 3, "foo", { foo: "bar", bar: 42, arr: [ 1, 2, 3, "foo", {} ] } ], bigobject: { foo: [ 1, 2, 3, "foo", {} ], bar: 42, a: {b: { c: 42 }}, foobar: "FooBar" } };
+        
+        let x = JSON.parse(body)        
+        let y = JSON.stringify(x, null, 2);
+        res.send(y);       
     })
 })
 
@@ -55,8 +58,9 @@ app.post("/proxy/**", (req, res, next) => {
         if (error) {
             console.log(error);            
         }
-        var x = JSON.parse(body)   
-        res.json(x);      
+        let x = JSON.parse(body)        
+        let y = JSON.stringify(x, null, 2);
+        res.send(y);      
     })
 })
 
